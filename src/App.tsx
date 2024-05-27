@@ -18,14 +18,26 @@ const mockTodos = [
 
 const App = (): JSX.Element => {
   const [todos, setTodos] = useState(mockTodos);
+
   const handleRemove = (id: string) => {
     const newTodos = todos.filter((todo) => todo.id !== id);
     setTodos(newTodos);
   };
+
+  const handleCompleted = (id: string, completed: boolean) => {
+    const newTodos = todos.map((todo) => {
+      if (todo.id === id) {
+        return { ...todo, completed };
+      }
+      return todo;
+    });
+    setTodos(newTodos);
+  };
+
   return (
     <div className="todoapp">
       <h1>to do list</h1>
-      <Todos todos={todos} onRemoveTodo={handleRemove} />
+      <Todos todos={todos} onRemoveTodo={handleRemove} onToggleCompleteTodo={handleCompleted} />
     </div>
   );
 };

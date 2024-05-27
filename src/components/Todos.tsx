@@ -1,13 +1,14 @@
 import Todo from './Todo';
 
 //definimos el tipado de las props que recibe el componente Todos,
-//será el tipado global IListOfTodos
+//será el tipado global IListOfTodos y algunos tipados nuevos añadidos
 interface TodosProps {
   todos: IListOfTodos;
   onRemoveTodo: (id: string) => void;
+  onToggleCompleteTodo: (id: string, completed: boolean) => void;
 }
 
-const Todos = ({ todos, onRemoveTodo }: TodosProps): JSX.Element => {
+const Todos = ({ todos, onRemoveTodo, onToggleCompleteTodo }: TodosProps): JSX.Element => {
   return (
     <ul className="todo-list">
       {todos.map((todo) => (
@@ -19,6 +20,7 @@ const Todos = ({ todos, onRemoveTodo }: TodosProps): JSX.Element => {
             title={todo.title}
             completed={todo.completed}
             onRemoveTodo={onRemoveTodo}
+            onToggleCompleteTodo={onToggleCompleteTodo}
           />
         </li>
       ))}
