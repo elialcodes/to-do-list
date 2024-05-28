@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import Todos from './components/Todos';
+import Footer from './components/Footer';
 
 //el tipado de la constante lo dejamos a la inferencia
 const mockTodos = [
@@ -18,6 +19,7 @@ const mockTodos = [
 
 const App = (): JSX.Element => {
   const [todos, setTodos] = useState(mockTodos);
+  const [filterSelected, setFilterSelected] = useState('all');
 
   //función para setear la variable de estado eliminando elementos del array,
   //nos devolverá los todos cuyo id no coincida con el id del evento
@@ -42,10 +44,42 @@ const App = (): JSX.Element => {
     setTodos(newTodos);
   };
 
+  const handleFilterChange = (filter: string): void => {
+    setFilterSelected(filter);
+  };
+
+  //constante para saber las tareas donde completed no es true
+  const activeCount = todos.filter((todo) => !todo.completed).length;
+
+  //constante para saber las tareas que están completas
+  const completedCount = todos.length - activeCount;
+
+  const filteredTodos = todos.filter((todo) => {
+    if (filterSelected === 'active') {
+      return !todo.completed;
+    }
+    if (filterSelected === 'completed') {
+      return todo.completed;
+    } else {
+      return todo;
+    }
+  });
+
   return (
     <div className="todoapp">
       <h1>to do list</h1>
-      <Todos todos={todos} onRemoveTodo={handleRemove} onToggleCompleteTodo={handleCompleted} />
+      <Todos
+        todos={filteredTodos}
+        onRemoveTodo={handleRemove}
+        onToggleCompleteTodo={handleCompleted}
+      />
+      <Footer
+        activeCount={activeCount}
+        completedCount={completedCount}
+        filterSelected={filterSelected}
+        onClearCompleted={() => {}}
+        handleFilterChange={handleFilterChange}
+      />
     </div>
   );
 };
