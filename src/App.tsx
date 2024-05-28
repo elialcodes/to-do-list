@@ -19,17 +19,25 @@ const mockTodos = [
 const App = (): JSX.Element => {
   const [todos, setTodos] = useState(mockTodos);
 
+  //función para setear la variable de estado eliminando elementos del array,
+  //nos devolverá los todos cuyo id no coincida con el id del evento
   const handleRemove = (id: string) => {
     const newTodos = todos.filter((todo) => todo.id !== id);
     setTodos(newTodos);
   };
 
+  //función para setear la variable de estado,
+  //cuando el usuario haga check, el evento detecta el id del todo donde
+  //se ha hecho check y cual será su propiedad completed (true o false):
   const handleCompleted = (id: string, completed: boolean) => {
     const newTodos = todos.map((todo) => {
       if (todo.id === id) {
+        //si el id coincide, devuelve un objeto con las propiedades del todo
+        //pero actualizando la propiedad completed con el valor proporcionado
+        //en el componente todo según la interación del usuario
         return { ...todo, completed };
       }
-      return todo;
+      return todo; //si no coincide, devuelve el todo sin cambios
     });
     setTodos(newTodos);
   };

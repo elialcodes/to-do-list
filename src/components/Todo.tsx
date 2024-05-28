@@ -14,9 +14,10 @@ const Todo = ({
   onRemoveTodo,
   onToggleCompleteTodo,
 }: TodoProps): JSX.Element => {
-  //tipamos esta función manejadora, si hacemos hover sobre el onChange del HTML,
-  //Typescript nos indica que es un evento React.ChangeEvent<HTMLInputElement>
-  //y el retorno de la función es vacío
+  //creamos una función manejadora que responde a un evento del usuario y ejecuta
+  //la función onToggleCompleteTodo para setear la variable de estado. La tipamos :
+  //si hacemos hover sobre el onChange del HTML, Typescript nos indica que
+  //es un evento React.ChangeEvent<HTMLInputElement> y el retorno de la función es vacío
   const handleChangeCheckbox = (event: React.ChangeEvent<HTMLInputElement>): void => {
     onToggleCompleteTodo(id, event.target.checked);
   };
@@ -26,7 +27,7 @@ const Todo = ({
       <input
         className="toggle"
         type="checkbox"
-        checked={completed}
+        checked={completed} //será true o false según la interacción del usuario
         onChange={handleChangeCheckbox}
       />
       <label>{title}</label>

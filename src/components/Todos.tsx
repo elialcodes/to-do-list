@@ -12,7 +12,8 @@ const Todos = ({ todos, onRemoveTodo, onToggleCompleteTodo }: TodosProps): JSX.E
   return (
     <ul className="todo-list">
       {todos.map((todo) => (
-        // con un condicional ternario añadimos o no la clase "completed":
+        // con un condicional ternario añadimos o no la clase css "completed":
+        // si todo.completed es true, añade la clase completed y la tarea se tacha
         <li key={todo.id} className={`${todo.completed ? 'completed' : ''}`}>
           <Todo
             key={todo.id}
