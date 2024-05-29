@@ -21,12 +21,19 @@ const App = (): JSX.Element => {
   const [todos, setTodos] = useState(mockTodos);
   const [filterSelected, setFilterSelected] = useState('all');
 
-  //función para eliminar tareas: nos devolverá un array para renderizar todas las
-  //tareas cuyo id no coincida con el id del evento
+  //función para eliminar tareas de una en una: nos devolverá un array para
+  //renderizar todas las tareas cuyo id no coincida con el id del evento
   //y seteará la variable de estado "todos"
   const handleRemove = (id: string) => {
-    console.log('Removing todo with id:', id);
     const newTodos = todos.filter((todo) => todo.id !== id);
+    setTodos(newTodos);
+  };
+
+  //función para eliminar todas las tareas completadas: con un filter nos devolverá
+  //un array para renderizar las tareas que están no completas
+  //y seteará la variabale de estado "todos"
+  const handleRemoveAllCompleted = (): void => {
+    const newTodos = todos.filter((todo) => !todo.completed);
     setTodos(newTodos);
   };
 
@@ -34,7 +41,6 @@ const App = (): JSX.Element => {
   //el evento detecta el id de la tarea en cuestión, la propiedad completed cambia
   //de valor (true o false), se tachará con css y se seteará la variable de estado "todos"
   const handleCompleted = (id: string, completed: boolean) => {
-    console.log('Toggling todo with id:', id, 'to', completed);
     const newTodos = todos.map((todo) => {
       if (todo.id === id) {
         //comprueba en cada tarea si el id coincide, y si es así,  devuelve el objeto
@@ -51,7 +57,6 @@ const App = (): JSX.Element => {
   //el usuario escogerá un filtro para mostrar las tareas (all, active, completed)
   //y se setea la variable de estado filterSelected
   const handleFilterChange = (filter: string): void => {
-    console.log('Filter changed to:', filter);
     setFilterSelected(filter);
   };
 
@@ -67,9 +72,6 @@ const App = (): JSX.Element => {
       return todo;
     }
   });
-
-  console.log('Current filterSelected:', filterSelected);
-  console.log('filteredTodos:', filteredTodos);
 
   //constante para saber el nº de tareas activas (donde completed no es true)
   const activeCount = todos.filter((todo) => !todo.completed).length;
@@ -89,7 +91,7 @@ const App = (): JSX.Element => {
         activeCount={activeCount} //tareas activas
         completedCount={completedCount} //tareas completadas
         filterSelected={filterSelected} //filtro selecionado
-        // onClearCompleted={() => {}} //borrar tareas completadas
+        onClearCompleted={handleRemoveAllCompleted} //borrar tareas completadas
         handleFilterChange={handleFilterChange} //detecta el filtro seleccionado
       />
     </div>

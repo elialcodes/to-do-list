@@ -4,17 +4,16 @@ interface FooterProps {
   activeCount: number;
   completedCount: number;
   filterSelected: string;
-  // onClearCompleted: () => void;
+  onClearCompleted: () => void;
   handleFilterChange: (filter: string) => void;
 }
 const Footer = ({
   activeCount,
   completedCount,
   filterSelected,
-  // onClearCompleted,
+  onClearCompleted,
   handleFilterChange,
 }: FooterProps): JSX.Element => {
-  console.log('Footer render:', filterSelected);
   return (
     <footer className="footer">
       <div className="todo-counter">
@@ -22,6 +21,11 @@ const Footer = ({
         <span className="todo-count">{completedCount} tareas completadas</span>
       </div>
       <Filters filterSelected={filterSelected} onFilterChange={handleFilterChange} />
+      {completedCount > 0 && (
+        <button className="clear-completed" onClick={onClearCompleted}>
+          Borrar completadas
+        </button>
+      )}
     </footer>
   );
 };

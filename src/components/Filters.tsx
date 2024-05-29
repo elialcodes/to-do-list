@@ -4,20 +4,13 @@ interface FiltersProps {
 }
 
 const Filters = ({ filterSelected, onFilterChange }: FiltersProps): JSX.Element => {
-  console.log('Filters render:', filterSelected);
-
-  const handleClick = (event: React.MouseEvent<HTMLAnchorElement, MouseEvent>, filter: string) => {
-    event.preventDefault();
-    console.log('Selected filter:', filter);
-    onFilterChange(filter);
-  };
   return (
     <ul className="filters">
       <li>
         <a
           href="#"
           className={filterSelected === 'all' ? 'selected' : ''}
-          onClick={(e) => handleClick(e, 'all')}
+          onClick={() => onFilterChange('all')}
         >
           Todas
         </a>
@@ -26,7 +19,7 @@ const Filters = ({ filterSelected, onFilterChange }: FiltersProps): JSX.Element 
         <a
           href="#"
           className={filterSelected === 'active' ? 'selected' : ''}
-          onClick={(e) => handleClick(e, 'active')}
+          onClick={() => onFilterChange('active')}
         >
           Activas
         </a>
@@ -35,7 +28,7 @@ const Filters = ({ filterSelected, onFilterChange }: FiltersProps): JSX.Element 
         <a
           href="#"
           className={filterSelected === 'completed' ? 'selected' : ''}
-          onClick={(e) => handleClick(e, 'completed')}
+          onClick={() => onFilterChange('completed')}
         >
           Completas
         </a>
