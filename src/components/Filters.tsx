@@ -1,37 +1,41 @@
 interface FiltersProps {
-  filterSelected: (id: string) => void;
-  onFilterChange: (id: string) => void;
+  filterSelected: string;
+  onFilterChange: (filter: string) => void;
 }
 
 const Filters = ({ filterSelected, onFilterChange }: FiltersProps): JSX.Element => {
+  console.log('Filters render:', filterSelected);
+
+  const handleClick = (event: React.MouseEvent<HTMLAnchorElement, MouseEvent>, filter: string) => {
+    event.preventDefault();
+    console.log('Selected filter:', filter);
+    onFilterChange(filter);
+  };
   return (
     <ul className="filters">
       <li>
         <a
-          className={`${filterSelected === 'all' ? 'selected' : ''}`}
-          onClick={() => {
-            onFilterChange('all');
-          }}
+          href="#"
+          className={filterSelected === 'all' ? 'selected' : ''}
+          onClick={(e) => handleClick(e, 'all')}
         >
           Todas
         </a>
       </li>
       <li>
         <a
-          className={`${filterSelected === 'active' ? 'selected' : ''}`}
-          onClick={() => {
-            onFilterChange('active');
-          }}
+          href="#"
+          className={filterSelected === 'active' ? 'selected' : ''}
+          onClick={(e) => handleClick(e, 'active')}
         >
           Activas
         </a>
       </li>
       <li>
         <a
-          className={`${filterSelected === 'completed' ? 'selected' : ''}`}
-          onClick={() => {
-            onFilterChange('completed');
-          }}
+          href="#"
+          className={filterSelected === 'completed' ? 'selected' : ''}
+          onClick={(e) => handleClick(e, 'completed')}
         >
           Completas
         </a>
