@@ -21,6 +21,9 @@ const Footer = ({
         <span className="todo-count">tareas completadas: {completedCount}</span>
       </div>
       <Filters filterSelected={filterSelected} onFilterChange={handleFilterChange} />
+      {/*El operador && evalúa la segunda expresión solo si la primera es verdadera.
+      En este caso, si completedCount > 0 es verdadero, entonces la expresión ( ... )
+      se evalúa y su contenido se renderiza. Útil cuando no podemos usar un ternario*/}
       {completedCount > 0 && (
         <button className="clear-completed" onClick={onClearCompleted}>
           Borrar completadas
