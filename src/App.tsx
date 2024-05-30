@@ -21,7 +21,7 @@ const App = (): JSX.Element => {
   const [todos, setTodos] = useState(mockTodos);
   const [filterSelected, setFilterSelected] = useState('all');
 
-  //función para eliminar tareas de una en una: nos devolverá un array para
+  //función para eliminar tareas con un botón X en cada una: nos devolverá un array para
   //renderizar todas las tareas cuyo id no coincida con el id del evento
   //y seteará la variable de estado "todos"
   const handleRemove = (id: string) => {
@@ -43,25 +43,25 @@ const App = (): JSX.Element => {
   const handleCompleted = (id: string, completed: boolean) => {
     const newTodos = todos.map((todo) => {
       if (todo.id === id) {
-        //comprueba en cada tarea si el id coincide, y si es así,  devuelve el objeto
-        //"todo" completo pero actualizando la propiedad completed con el valor
+        //comprueba en cada tarea si el id coincide, y si es así, la devuelve en el objeto
+        //"todo" pero actualizando su propiedad completed con el valor
         //proporcionado en el componente Todo según la interación del usuario
         return { ...todo, completed };
       }
-      return todo; //si no coincide, devuelve el todo sin cambios
+      return todo; //si no coincide, devuelve el objeto "todo" sin cambios
     });
-    setTodos(newTodos); //nuevo array para renderizar
+    setTodos(newTodos); //nuevo array de objetos para renderizar
   };
 
   //función para setear la variable de estado filterSelected:
   //el usuario escogerá un filtro para mostrar las tareas (all, active, completed)
-  //y se setea la variable de estado filterSelected
+  //y se seteará la variable de estado filterSelected
   const handleFilterChange = (filter: string): void => {
     setFilterSelected(filter);
   };
 
-  //según el valor de la variable de estado filtedSelected, creamos una función que
-  //devuelve un array con las tareas filtradas según el filtro usado, para renderizarlo
+  //según el valor de la variable de estado filterSelected, creamos una función que
+  //devuelve un array para renderizar las tareas filtradas según el filtro escogido
   const filteredTodos = todos.filter((todo) => {
     if (filterSelected === 'active') {
       return !todo.completed;
@@ -84,14 +84,14 @@ const App = (): JSX.Element => {
       <h1>to do list</h1>
       <Todos
         todos={filteredTodos} //array de tareas según el filtro seleccionado
-        onRemoveTodo={handleRemove} //borrar tareas
+        onRemoveTodo={handleRemove} //borrar tareas con el botón X
         onToggleCompleteTodo={handleCompleted} //completar tareas
       />
       <Footer
         activeCount={activeCount} //tareas activas
         completedCount={completedCount} //tareas completadas
-        filterSelected={filterSelected} //filtro selecionado
-        onClearCompleted={handleRemoveAllCompleted} //borrar tareas completadas
+        filterSelected={filterSelected} //variable de estado: filtro selecionado
+        onClearCompleted={handleRemoveAllCompleted} //borrar todas las tareas completadas
         handleFilterChange={handleFilterChange} //detecta el filtro seleccionado
       />
     </div>
