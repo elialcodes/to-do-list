@@ -91,8 +91,8 @@ const App = (): JSX.Element => {
         activeCount={activeCount} //tareas activas
         completedCount={completedCount} //tareas completadas
         filterSelected={filterSelected} //variable de estado: filtro selecionado
-        onClearCompleted={handleRemoveAllCompleted} //borrar todas las tareas completadas
         handleFilterChange={handleFilterChange} //detecta el filtro seleccionado
+        onClearCompleted={handleRemoveAllCompleted} //borrar todas las tareas completadas
       />
     </div>
   );

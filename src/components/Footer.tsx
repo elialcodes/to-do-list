@@ -11,14 +11,14 @@ const Footer = ({
   activeCount,
   completedCount,
   filterSelected,
-  onClearCompleted,
   handleFilterChange,
+  onClearCompleted,
 }: FooterProps): JSX.Element => {
   return (
     <footer className="footer">
       <div className="todo-counter">
-        <span className="todo-count">{activeCount} tareas pendientes</span>
-        <span className="todo-count">{completedCount} tareas completadas</span>
+        <span className="todo-count">tareas pendientes: {activeCount}</span>
+        <span className="todo-count">tareas completadas: {completedCount}</span>
       </div>
       <Filters filterSelected={filterSelected} onFilterChange={handleFilterChange} />
       {completedCount > 0 && (
