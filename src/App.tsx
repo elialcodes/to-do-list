@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import Header from './components/Header';
 import Todos from './components/Todos';
 import Footer from './components/Footer';
 
@@ -20,6 +21,22 @@ const mockTodos = [
 const App = (): JSX.Element => {
   const [todos, setTodos] = useState(mockTodos);
   const [filterSelected, setFilterSelected] = useState('all');
+
+  //función para añadir una tarea a la que sólo le pasamos como argumento
+  //el title (pues es lo único que puede cambiar ya que el id lo generamos y
+  //la propiedad completed será false)
+  //creamos una tarea nueva a la que pasamos el tipado global ITodo y nos
+  //devolverá un array para renderizar que contiene los
+  //"todos" que ya están en la variable de estado y la nueva tarea
+  const handleAddTodo = (title: string): void => {
+    const newTodo: ITodo = {
+      id: crypto.randomUUID(), //con esta función añadimos un id random
+      title,
+      completed: false,
+    };
+    const newTodos = [...todos, newTodo];
+    setTodos(newTodos);
+  };
 
   //función para eliminar tareas con un botón X en cada una: nos devolverá un array para
   //renderizar todas las tareas cuyo id no coincida con el id del evento
@@ -81,7 +98,9 @@ const App = (): JSX.Element => {
 
   return (
     <div className="todoapp">
-      <h1>to do list</h1>
+      <Header
+        onAddTodo={handleAddTodo} //añadir tarea
+      />
       <Todos
         todos={filteredTodos} //array de tareas según el filtro seleccionado
         onRemoveTodo={handleRemove} //borrar tareas con el botón X
