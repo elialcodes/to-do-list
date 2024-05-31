@@ -115,23 +115,25 @@ const App = (): JSX.Element => {
   const completedCount = todos.length - activeCount;
 
   return (
-    <div className="todoapp">
+    <>
       <Header
         onAddTodo={handleAddTodo} //añadir tarea
       />
-      <Todos
-        todos={filteredTodos} //array de tareas según el filtro seleccionado
-        onRemoveTodo={handleRemove} //borrar tareas con el botón X
-        onToggleCompleteTodo={handleCompleted} //completar tareas
-      />
-      <Footer
-        activeCount={activeCount} //tareas activas
-        completedCount={completedCount} //tareas completadas
-        filterSelected={filterSelected} //variable de estado: filtro selecionado
-        handleFilterChange={handleFilterChange} //detecta el filtro seleccionado
-        onClearCompleted={handleRemoveAllCompleted} //borrar todas las tareas completadas
-      />
-    </div>
+      <div className="todoapp">
+        <Todos
+          todos={filteredTodos} //array de tareas según el filtro seleccionado
+          onRemoveTodo={handleRemove} //borrar tareas con el botón X
+          onToggleCompleteTodo={handleCompleted} //completar tareas
+        />
+        <Footer
+          activeCount={activeCount} //tareas activas
+          completedCount={completedCount} //tareas completadas
+          filterSelected={filterSelected} //variable de estado: filtro selecionado
+          handleFilterChange={handleFilterChange} //detecta el filtro seleccionado
+          onClearCompleted={handleRemoveAllCompleted} //borrar todas las tareas completadas
+        />
+      </div>
+    </>
   );
 };
 
