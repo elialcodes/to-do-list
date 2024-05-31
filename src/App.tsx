@@ -3,6 +3,7 @@ import localStorage from './services/localStorage';
 import Header from './components/Header';
 import Todos from './components/Todos';
 import Footer from './components/Footer';
+import CreateTodo from './components/CreateTodo';
 
 //el tipado de la constante lo dejamos a la inferencia
 const mockTodos = [
@@ -115,11 +116,10 @@ const App = (): JSX.Element => {
   const completedCount = todos.length - activeCount;
 
   return (
-    <>
-      <Header
-        onAddTodo={handleAddTodo} //añadir tarea
-      />
+    <div className="mainContainer">
+      <Header />
       <div className="todoapp">
+        <CreateTodo onAddTodo={handleAddTodo} />
         <Todos
           todos={filteredTodos} //array de tareas según el filtro seleccionado
           onRemoveTodo={handleRemove} //borrar tareas con el botón X
@@ -133,7 +133,7 @@ const App = (): JSX.Element => {
           onClearCompleted={handleRemoveAllCompleted} //borrar todas las tareas completadas
         />
       </div>
-    </>
+    </div>
   );
 };
 

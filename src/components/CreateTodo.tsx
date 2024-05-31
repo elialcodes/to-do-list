@@ -1,9 +1,9 @@
 import { useState } from 'react';
 interface CreateTodoProps {
-  saveTodo: (title: string) => void;
+  onAddTodo: (title: string) => void;
 }
 
-const CreateTodo = ({ saveTodo }: CreateTodoProps) => {
+const CreateTodo = ({ onAddTodo }: CreateTodoProps) => {
   const [inputValue, setInputValue] = useState(''); //variable de estado del valor del input
 
   //función manejadora asociada al evento (pues lleva event como argumento), con ella:
@@ -14,7 +14,7 @@ const CreateTodo = ({ saveTodo }: CreateTodoProps) => {
   // - ejecutar setInputValue para poner el input vacío tras añadir la tarea
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
     event.preventDefault();
-    saveTodo(inputValue);
+    onAddTodo(inputValue);
     setInputValue('');
   };
 

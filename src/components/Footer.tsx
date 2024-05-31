@@ -25,9 +25,9 @@ const Footer = ({
       En este caso, si completedCount > 0 es verdadero, entonces la expresión ( ... )
       se evalúa y su contenido se renderiza. Útil cuando no podemos usar un ternario*/}
       {completedCount > 0 && (
-        <button className="clear-completed" onClick={onClearCompleted}>
+        <a className="clear-completed" onClick={onClearCompleted}>
           Borrar completadas
-        </button>
+        </a>
       )}
     </footer>
   );
