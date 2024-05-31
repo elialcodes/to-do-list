@@ -9,38 +9,43 @@ const mockTodos = [
   { id: '1', title: 'Aprender TypeScript', completed: true },
   {
     id: '2',
-    title: 'Repasar React',
+    title: 'Preparar las vacaciones',
     completed: false,
   },
   {
     id: '3',
-    title: 'Hacer portfolio',
+    title: 'Irme de cañas',
     completed: false,
   },
 ];
 
 const App = (): JSX.Element => {
+  //variable de estado para los filtros que seleccione el usuario
   const [filterSelected, setFilterSelected] = useState('all');
 
-  //variable de estado para las tareas: obtenemos los datos de local storage
-  //si hay datos, los seteamos en el useState, si no, seteamos la variable mockTodos
+  //variable de estado para las tareas y damos código al useState: obtenemos los
+  //datos de local storage con la lógica establecida en carpeta services:
+  //pasamos 2 parámetros: el primero por si hay datos en local storage y si no,
+  //toma el segundo parámetro
   const [todos, setTodos] = useState(() => {
-    const savedTodos = localStorage.get('savedTodos');
-    return savedTodos ? JSON.parse(savedTodos) : mockTodos;
+    const savedTodos = localStorage.get('savedTodos', mockTodos);
+    return savedTodos;
   });
 
   //usamos useEffect para guardar los datos en el local storage,
-  //solo se ejecutará cuando cambie el array de dependencias "todos"
+  //se ejecutará cuando cambie el array de dependencias "todos" (al añadir
+  //una tarea, al completarla, al eliminarla y al eliminar todas las completadas)
   useEffect(() => {
     localStorage.set('savedTodos', todos);
   }, [todos]);
 
-  //función para añadir una tarea a la que sólo le pasamos como argumento
+  //función para añadir una tarea, sólo pasamos como argumento
   //el title (pues es lo único que puede cambiar ya que el id lo generamos y
-  //la propiedad completed será false)
+  //la propiedad completed será false por defecto)
   //creamos una tarea nueva a la que pasamos el tipado global ITodo y nos
   //devolverá un array para renderizar que contiene los
   //"todos" que ya están en la variable de estado y la nueva tarea
+  //seteará la variable de estado
   const handleAddTodo = (title: string): void => {
     const newTodo: ITodo = {
       id: crypto.randomUUID(), //con esta función añadimos un id random

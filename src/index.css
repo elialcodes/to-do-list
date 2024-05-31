@@ -75,6 +75,18 @@ body {
   text-rendering: optimizeLegibility;
 }
 
+.logoTypeScript {
+  width: 60px;
+  height: auto;
+}
+
+.logoReact {
+  width: 60px;
+  height: auto;
+  background-color: white;
+  border-radius: 5px;
+}
+
 .new-todo,
 .edit {
   position: relative;
