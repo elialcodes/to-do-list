@@ -246,17 +246,14 @@ h1 {
 .filters {
   list-style: none;
   display: flex;
+  justify-content: space-evenly;
   text-align: center;
+  gap: 20px;
   position: relative;
-}
-
-.filters li {
-  display: inline;
 }
 
 .filters li a {
   color: inherit;
-  margin: 3px 10px;
   padding: 3px 8px;
   text-decoration: none;
   border: 1px solid transparent;
@@ -290,6 +287,7 @@ h1 {
 
 .clear-completed:hover {
   border: 1px solid lightblue;
+  border-radius: 3px;
 }
 
 @media (max-width: 767px) {
@@ -297,9 +295,11 @@ h1 {
     margin-top: 60px;
     font-size: 60px;
   }
+
   .logoTypeScript {
     width: 40px;
   }
+
   .logoReact {
     width: 40px;
   }
@@ -307,9 +307,23 @@ h1 {
     font-size: 20px;
     padding: 16px 16px 16px 30px;
   }
-  .new-todo::placeholder {
+
+  .form input::-webkit-input-placeholder {
     font-size: 20px;
   }
+
+  .form input::-moz-placeholder {
+    font-size: 20px;
+  }
+
+  .form input::input-placeholder {
+    font-size: 20px;
+  }
+
+  /* .new-todo::placeholder {
+    font-size: 20px;
+  } */
+
   .toggle {
     width: 20px;
     margin-top: 10px;
@@ -324,11 +338,13 @@ h1 {
     font-size: 30px;
     right: 10px;
   }
+
   .footer {
     display: flex;
     flex-direction: column;
   }
   .todo-counter {
+    width: 100%;
     padding-bottom: 8px;
     display: inline;
     border-bottom: 1px solid #ededed;
@@ -340,11 +356,18 @@ h1 {
   }
 
   .filters {
-    padding: 10px 0px;
+    width: 100%;
+    margin: 0px;
+    padding: 10px;
+    display: flex;
+    align-content: center;
+    justify-content: center;
     border-bottom: 1px solid #ededed;
     font-size: 14px;
   }
+
   .clear-completed {
-    padding: 10px 0px;
+    margin-top: 10px;
+    padding: 3px 8px;
   }
 }
