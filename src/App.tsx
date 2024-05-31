@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import localStorage from './services/localStorage';
 import Header from './components/Header';
 import Todos from './components/Todos';
 import Footer from './components/Footer';
@@ -19,8 +20,20 @@ const mockTodos = [
 ];
 
 const App = (): JSX.Element => {
-  const [todos, setTodos] = useState(mockTodos);
   const [filterSelected, setFilterSelected] = useState('all');
+
+  //variable de estado para las tareas: obtenemos los datos de local storage
+  //si hay datos, los seteamos en el useState, si no, seteamos la variable mockTodos
+  const [todos, setTodos] = useState(() => {
+    const savedTodos = localStorage.get('savedTodos');
+    return savedTodos ? JSON.parse(savedTodos) : mockTodos;
+  });
+
+  //usamos useEffect para guardar los datos en el local storage,
+  //solo se ejecutará cuando cambie el array de dependencias "todos"
+  useEffect(() => {
+    localStorage.set('savedTodos', todos);
+  }, [todos]);
 
   //función para añadir una tarea a la que sólo le pasamos como argumento
   //el title (pues es lo único que puede cambiar ya que el id lo generamos y
@@ -42,7 +55,7 @@ const App = (): JSX.Element => {
   //renderizar todas las tareas cuyo id no coincida con el id del evento
   //y seteará la variable de estado "todos"
   const handleRemove = (id: string) => {
-    const newTodos = todos.filter((todo) => todo.id !== id);
+    const newTodos = todos.filter((todo: ITodo) => todo.id !== id);
     setTodos(newTodos);
   };
 
@@ -50,7 +63,7 @@ const App = (): JSX.Element => {
   //un array para renderizar las tareas que están no completas
   //y seteará la variabale de estado "todos"
   const handleRemoveAllCompleted = (): void => {
-    const newTodos = todos.filter((todo) => !todo.completed);
+    const newTodos = todos.filter((todo: ITodo) => !todo.completed);
     setTodos(newTodos);
   };
 
@@ -58,7 +71,7 @@ const App = (): JSX.Element => {
   //el evento detecta el id de la tarea en cuestión, la propiedad completed cambia
   //de valor (true o false), se tachará con css y se seteará la variable de estado "todos"
   const handleCompleted = (id: string, completed: boolean) => {
-    const newTodos = todos.map((todo) => {
+    const newTodos = todos.map((todo: ITodo) => {
       if (todo.id === id) {
         //comprueba en cada tarea si el id coincide, y si es así, la devuelve en el objeto
         //"todo" pero actualizando su propiedad completed con el valor
@@ -79,7 +92,7 @@ const App = (): JSX.Element => {
 
   //según el valor de la variable de estado filterSelected, creamos una función que
   //devuelve un array para renderizar las tareas filtradas según el filtro escogido
-  const filteredTodos = todos.filter((todo) => {
+  const filteredTodos = todos.filter((todo: ITodo) => {
     if (filterSelected === 'active') {
       return !todo.completed;
     }
@@ -91,7 +104,7 @@ const App = (): JSX.Element => {
   });
 
   //constante para saber el nº de tareas activas (donde completed no es true)
-  const activeCount = todos.filter((todo) => !todo.completed).length;
+  const activeCount = todos.filter((todo: ITodo) => !todo.completed).length;
 
   //constante para saber el nº de tareas que están completas
   const completedCount = todos.length - activeCount;
