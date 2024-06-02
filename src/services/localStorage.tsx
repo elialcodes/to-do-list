@@ -1,7 +1,8 @@
 //función que obtiene el local storage
 //si no hay nada, la función devuelve el valor
-//defaultValue así esta comprobación no la tenemos que hacer en App.js
-const get = (key, defaultValue) => {
+//defaultValue (el array de objetos de App) así esta comprobación
+//no la tenemos que hacer en App.js
+const get = (key: string, defaultValue: IListOfTodos): IListOfTodos => {
   const localStorageData = localStorage.getItem(key);
   if (localStorageData === null) {
     return defaultValue;
@@ -12,7 +13,7 @@ const get = (key, defaultValue) => {
 
 //función que guarda el nombre de un objeto (la key)
 //y su valor en el local storage
-const set = (key, value) => {
+const set = (key: string, value: IListOfTodos): void => {
   const localStorageData = JSON.stringify(value);
   localStorage.setItem(key, localStorageData);
 };
