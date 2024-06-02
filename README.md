@@ -9,8 +9,8 @@ Welcome to my To Do List app, a simple web that every student should make. I hav
 - every task has a checkbox input to mark the task as completed adding a crosse out style
 - every task has a delete button
 - the user can see the total of completed and incompleted tasks
-- there are 3 kids of filter to show all tasks, active tasks or completed tasks
-- with a button the user could deleted all completed tasks.
+- there are 3 kinds of filters to show all, active or completed tasks
+- with a button the user can deleted all completed tasks.
 
 ## Tech Stack 📚
 
@@ -18,7 +18,7 @@ HTML, CSS, TypeScript and React.
 
 ## Installation 💻
 
-Previously, you need to have install node.js.
+Previously, you have to install Node.js.
 
 ```bash
   npm create vite@lastest to-do-list
@@ -39,7 +39,7 @@ Start the project:
   npm run dev
 ```
 
-### Expanding the ESLint configuration
+Expanding the ESLint configuration
 
 ```bash
   npx eslint --init
