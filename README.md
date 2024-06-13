@@ -62,7 +62,7 @@ parserOptions: {
   }
 ```
 
-- Clone the repository: https://github.com/elialcodes/to-do-list.git
+Clone the repository: https://github.com/elialcodes/to-do-list.git
 
 ## Links 🔗
 
