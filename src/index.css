@@ -198,20 +198,21 @@ h1 {
   position: relative;
 }
 
-.filters li a {
+.filters li button {
   color: inherit;
+  background-color: transparent;
   padding: 3px 8px;
   text-decoration: none;
   border: 1px solid transparent;
   border-radius: 3px;
 }
 
-.filters li a:hover {
-  border-color: lightblue;
+.filters li button:hover {
+  border-color: blue;
 }
 
-.filters li a.selected {
-  border-color: blue;
+.filters li button.selected {
+  border-color: lightskyblue;
 }
 
 .clear-completed,

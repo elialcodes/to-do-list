@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import localStorage from './services/localStorage';
+import { get, set } from './services/localStorage';
 import Header from './components/Header';
 import Todos from './components/Todos';
 import Footer from './components/Footer';
@@ -25,11 +25,10 @@ const App = (): JSX.Element => {
   const [filterSelected, setFilterSelected] = useState('all');
 
   //variable de estado para las tareas y damos código al useState: obtenemos los
-  //datos de local storage con la lógica establecida en carpeta services:
-  //pasamos 2 parámetros: el primero por si hay datos en local storage y si no,
-  //toma el segundo parámetro
+  //datos de local storage con la lógica de carpeta services: pasamos 2 parámetros al
+  //get, el primero por si hay datos en local storage y el segundo por si no los hay
   const [todos, setTodos] = useState(() => {
-    const savedTodos = localStorage.get('savedTodos', mockTodos);
+    const savedTodos = get('savedTodos', mockTodos);
     return savedTodos;
   });
 
@@ -37,16 +36,15 @@ const App = (): JSX.Element => {
   //se ejecutará cuando cambie el array de dependencias "todos" (al añadir
   //una tarea, al completarla, al eliminarla y al eliminar todas las completadas)
   useEffect(() => {
-    localStorage.set('savedTodos', todos);
+    set('savedTodos', todos);
   }, [todos]);
 
-  //función para añadir una tarea, sólo pasamos como argumento
-  //el title (pues es lo único que puede cambiar ya que el id lo generamos y
-  //la propiedad completed será false por defecto)
-  //creamos una tarea nueva a la que pasamos el tipado global ITodo y nos
-  //devolverá un array para renderizar que contiene los
-  //"todos" que ya están en la variable de estado y la nueva tarea
-  //seteará la variable de estado
+  //función para AÑADIR UNA TAREA:
+  //1. sólo pasamos como argumento el title (es único que puede cambiar ya que el id
+  //   lo generamos y la propiedad completed será false por defecto)
+  //2. creamos una tarea nueva a la que pasamos el tipado global ITodo
+  //3. creamos un array para renderizar que contiene los "todos" y la nueva tarea
+  //4. seteamos la variable de estado
   const handleAddTodo = (title: string): void => {
     const newTodo: ITodo = {
       id: crypto.randomUUID(), //con esta función añadimos un id random
@@ -57,25 +55,17 @@ const App = (): JSX.Element => {
     setTodos(newTodos);
   };
 
-  //función para eliminar tareas con un botón X en cada una: nos devolverá un array para
-  //renderizar todas las tareas cuyo id no coincida con el id del evento
-  //y seteará la variable de estado "todos"
+  //función para ELIMINAR UNA TAREA con un botón X en cada una:
+  //nos devolverá un array para renderizar todas las tareas cuyo id no coincida
+  //con el id del evento y seteará la variable de estado
   const handleRemove = (id: string) => {
     const newTodos = todos.filter((todo: ITodo) => todo.id !== id);
     setTodos(newTodos);
   };
 
-  //función para eliminar todas las tareas completadas: con un filter nos devolverá
-  //un array para renderizar las tareas que están no completas
-  //y seteará la variabale de estado "todos"
-  const handleRemoveAllCompleted = (): void => {
-    const newTodos = todos.filter((todo: ITodo) => !todo.completed);
-    setTodos(newTodos);
-  };
-
-  //función para completar tareas: cuando el usuario hace click en un checkbutton,
+  //función para COMPLETAR UNA TAREA: cuando el usuario hace click en un checkbutton,
   //el evento detecta el id de la tarea en cuestión, la propiedad completed cambia
-  //de valor (true o false), se tachará con css y se seteará la variable de estado "todos"
+  //de valor (true o false), se tachará con css y se seteará la variable de estado
   const handleCompleted = (id: string, completed: boolean) => {
     const newTodos = todos.map((todo: ITodo) => {
       if (todo.id === id) {
@@ -87,6 +77,13 @@ const App = (): JSX.Element => {
       return todo; //si no coincide, devuelve el objeto "todo" sin cambios
     });
     setTodos(newTodos); //nuevo array de objetos para renderizar
+  };
+
+  //función para ELIMINAR TODAS LAS TAREAS COMPLETADAS: un filter nos devolverá un array
+  //para renderizar las tareas que están no completas y seteará la variabale de estado
+  const handleRemoveAllCompleted = (): void => {
+    const newTodos = todos.filter((todo: ITodo) => !todo.completed);
+    setTodos(newTodos);
   };
 
   //función para setear la variable de estado filterSelected:
@@ -130,7 +127,7 @@ const App = (): JSX.Element => {
           completedCount={completedCount} //tareas completadas
           filterSelected={filterSelected} //variable de estado: filtro selecionado
           handleFilterChange={handleFilterChange} //detecta el filtro seleccionado
-          onClearCompleted={handleRemoveAllCompleted} //borrar todas las tareas completadas
+          onClearCompleted={handleRemoveAllCompleted} //borra todas las tareas completadas
         />
       </div>
     </div>

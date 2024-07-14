@@ -7,8 +7,7 @@ const Filters = ({ filterSelected, onFilterChange }: FiltersProps): JSX.Element 
   return (
     <ul className="filters">
       <li>
-        <a
-          href="#"
+        <button
           // pintar o no una clase de CSS según la variable de estado filterSelected:
           className={filterSelected === 'all' ? 'selected' : ''}
           //evento para ejecutar la función de las props y setear la variable de estado
@@ -17,25 +16,23 @@ const Filters = ({ filterSelected, onFilterChange }: FiltersProps): JSX.Element 
           onClick={() => onFilterChange('all')}
         >
           Todas
-        </a>
+        </button>
       </li>
       <li>
-        <a
-          href="#"
+        <button
           className={filterSelected === 'active' ? 'selected' : ''}
           onClick={() => onFilterChange('active')} //se mostrarán las tareas activas
         >
           Activas
-        </a>
+        </button>
       </li>
       <li>
-        <a
-          href="#"
+        <button
           className={filterSelected === 'completed' ? 'selected' : ''}
           onClick={() => onFilterChange('completed')} //se mostrarán las tareas completadas
         >
           Completas
-        </a>
+        </button>
       </li>
     </ul>
   );
