@@ -19,14 +19,7 @@ HTML, CSS, TypeScript and React.
 ## Installation 💻
 
 Previously, you have to install Node.js.
-
-```bash
-  npm create vite@lastest to-do-list
-```
-
-Select a framework: React
-Select a variant: TypeScript + SWC
-
+Clone the repository: https://github.com/elialcodes/to-do-list.git
 Install node_modules folder:
 
 ```bash
@@ -39,31 +32,6 @@ Start the project:
   npm run dev
 ```
 
-Expanding the ESLint configuration
-
-```bash
-  npx eslint --init
-```
-
-- Choose:
-
-  - to check syntax, find problems and enfource code style
-  - JavaScript modules (import/export)
-  - React
-  - use TypeScript
-  - style guide Standard-with-TypeScript
-  - format JavaScript
-
-- Configure the top-level `parserOptions` property like this:
-
-```
-parserOptions: {
-    project: './tsconfig.json',
-  }
-```
-
-Clone the repository: https://github.com/elialcodes/to-do-list.git
-
 ## Links 🔗
 
-https://elialcodes.github.io/to-do-list/
+https://to-do-list-nine-flax-32.vercel.app/
