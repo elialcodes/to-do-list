@@ -19,7 +19,9 @@ HTML, CSS, TypeScript and React.
 ## Installation 💻
 
 Previously, you have to install Node.js.
+
 Clone the repository: https://github.com/elialcodes/to-do-list.git
+
 Install node_modules folder:
 
 ```bash
