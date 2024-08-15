@@ -11,23 +11,25 @@ interface TodosProps {
 
 const Todos = ({ todos, onRemoveTodo, onToggleCompleteTodo }: TodosProps): JSX.Element => {
   return (
-    <ul className="todo-list">
-      {/* mapeamos el array para que se renderize */}
-      {todos.map((todo) => (
-        // con un condicional ternario añadimos o no la clase css "completed":
-        // si todo.completed es true, añade la clase completed y la tarea se tacha
-        <li key={todo.id} className={`${todo.completed ? 'completed' : ''}`}>
-          <Todo
-            key={todo.id}
-            id={todo.id}
-            title={todo.title}
-            completed={todo.completed}
-            onRemoveTodo={onRemoveTodo}
-            onToggleCompleteTodo={onToggleCompleteTodo}
-          />
-        </li>
-      ))}
-    </ul>
+    <main>
+      <ul className="todo-list">
+        {/* mapeamos el array para que se renderize */}
+        {todos.map((todo) => (
+          // con un condicional ternario añadimos o no la clase css "completed":
+          // si todo.completed es true, añade la clase completed y la tarea se tacha
+          <li key={todo.id} className={`${todo.completed ? 'completed' : ''}`}>
+            <Todo
+              key={todo.id}
+              id={todo.id}
+              title={todo.title}
+              completed={todo.completed}
+              onRemoveTodo={onRemoveTodo}
+              onToggleCompleteTodo={onToggleCompleteTodo}
+            />
+          </li>
+        ))}
+      </ul>
+    </main>
   );
 };
 

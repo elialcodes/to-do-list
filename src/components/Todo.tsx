@@ -17,7 +17,7 @@ const Todo = ({
 }: TodoProps): JSX.Element => {
   //creamos una función manejadora que ejecuta la función onToggleCompleteTodo para
   //comprobar el atributo checked del checkbox (true o false, según un evento del usuario)
-  //y setear la variable de estado.
+  //y setear la propiedad complete de variable de estado.
   //La tipamos: si hacemos hover sobre el onChange del HTML, Typescript nos indica que
   //es un evento React.ChangeEvent<HTMLInputElement> y el retorno de la función es vacío
   const handleChangeCheckbox = (event: React.ChangeEvent<HTMLInputElement>): void => {
