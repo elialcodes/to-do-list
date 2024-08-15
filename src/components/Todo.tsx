@@ -1,3 +1,4 @@
+/* eslint-disable react/react-in-jsx-scope */
 //definimos el tipado de las props que recibe el componente Todo:
 //ampliamos el tipado global ITodo creando una interface
 //que añade los tipados de las funciones onRemoveTodo y onToggleCompleteTodo:

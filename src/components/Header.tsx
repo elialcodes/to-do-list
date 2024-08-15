@@ -1,5 +1,6 @@
-import LogoTypeScript from '../../public/logoTypeScript.png';
-import LogoReact from '../../public/logoReact.png';
+/* eslint-disable react/react-in-jsx-scope */
+import LogoTypeScript from '../assets/logoTypeScript.png';
+import LogoReact from '../assets/logoReact.png';
 
 const Header = (): JSX.Element => {
   return (
