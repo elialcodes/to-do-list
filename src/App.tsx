@@ -21,6 +21,10 @@ const mockTodos = [
 ];
 
 const App = (): JSX.Element => {
+  //ponemos en app las 2 variables de estado porque están relacionadas entre si
+  //(array de todos y los filtros, pues dependiendo del filtro  el array de todos cambia)
+  //y así se pasarán correctamente a los componentes que las necesitan:
+
   //variable de estado para los filtros que seleccione el usuario
   const [filterSelected, setFilterSelected] = useState('all');
 
