@@ -1,4 +1,3 @@
-/* eslint-disable react/react-in-jsx-scope */
 import Todo from './Todo';
 
 //definimos el tipado de las props que recibe el componente Todos,

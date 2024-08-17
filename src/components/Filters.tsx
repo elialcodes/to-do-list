@@ -1,4 +1,3 @@
-/* eslint-disable react/react-in-jsx-scope */
 interface FiltersProps {
   filterSelected: string;
   onFilterChange: (filter: string) => void;

@@ -1,4 +1,3 @@
-/* eslint-disable react/react-in-jsx-scope */
 import { useState } from 'react';
 interface CreateTodoProps {
   onAddTodo: (title: string) => void;

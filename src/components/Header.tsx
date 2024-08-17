@@ -1,4 +1,3 @@
-/* eslint-disable react/react-in-jsx-scope */
 import LogoTypeScript from '../assets/logoTypeScript.png';
 import LogoReact from '../assets/logoReact.png';
 
