@@ -1,3 +1,4 @@
+/* eslint-disable react/react-in-jsx-scope */
 import Filters from './Filters.jsx';
 
 interface FooterProps {

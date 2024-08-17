@@ -1,3 +1,4 @@
+/* eslint-disable react/react-in-jsx-scope */
 import { useState, useEffect } from 'react';
 import { get, set } from './services/localStorage';
 import Header from './components/Header';
